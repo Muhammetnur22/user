@@ -1,0 +1,39 @@
+import React, {useEffect, useState} from "react"
+
+
+
+// async function getUsers() {
+//   let url = 'https://jsonplaceholder.typicode.com/users';
+//   try {
+//     let res = await fetch(url);
+//     return await res.json();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// async function renderUsers() {
+//   let users = await getUsers();
+//   let html = '';
+//   users.forEach(user => {
+//     let htmlSegment = `<div class="user">
+//     <h2>${user.name} ${user.username}</h2>
+//     <div class="email"><a href="email:${user.email}">${user.email}</a></div>
+//     </div>`;
+    
+//     html += htmlSegment;
+//   });
+  
+//   let container = document.querySelector('.container');
+//   container.innerHTML = html;
+// }
+// renderUsers();
+
+export default function Home() {
+  const [users, setUsers] = useState([]);
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setUsers(data.users))
+  },[])
+  return <div></div>
+}
