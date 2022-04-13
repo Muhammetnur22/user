@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react"
+import Layout from "../components/Layout";
 
 
 
@@ -35,5 +36,10 @@ export default function Home() {
     .then(res => res.json())
     .then(data => setUsers(data.users))
   },[])
-  return <div></div>
+  return (
+      <Layout>
+        
+      </Layout>
+    )
 }
+
