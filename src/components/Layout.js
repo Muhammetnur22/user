@@ -1,6 +1,6 @@
 import React from "react";
 
-function Layout({children}){
+const Layout =({children})=>{
    return(
         <div>
             {children}

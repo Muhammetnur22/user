@@ -29,17 +29,22 @@ import Layout from "../components/Layout";
 // }
 // renderUsers();
 
-export default function Home() {
+const Home = () =>{
   const [users, setUsers] = useState([]);
   useEffect(()=>{
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(res => res.json())
-    .then(data => setUsers(data.users))
+    .then(res => setUsers(res.users))
+    .then(res =>console.log(res))
   },[])
+
+  
   return (
       <Layout>
         
       </Layout>
     )
 }
+
+export default Home;
 

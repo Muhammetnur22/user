@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 
-export default function NotFound(){
+const NotFound = () =>{
    return(
        <Layout>
         <div>
@@ -11,3 +11,5 @@ export default function NotFound(){
        </Layout>
    ) 
 }
+
+export default NotFound;
