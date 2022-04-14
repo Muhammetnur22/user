@@ -1,36 +1,76 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
 }
 
 .container{
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header{
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+  font-size: 2.5rem;
+  margin: 2rem 0;
 }
 
-.user{
-    margin-bottom: 1rem;
-
+.message {
+  margin: 1rem 0.5rem 0;
 }
 
-button{
-    border: none;
-    color: white;
-    background:#0d3678;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-size: 1rem;
-    margin: 1rem 0;
+.user-data{
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.user-data p {
+  padding: 0 0.5rem;
+}
+
+button {
+  border: none;
+  color: white;
+  background:#0d3678;
+  cursor: pointer;
+}
+
+.auth-button{
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+form {
+  text-align: center;
+  display: flex;
+  margin: 1rem 0;
+}
+
+.input-control {
+  width: 100%;
+  min-width: 300px;
+  border: none;
+  box-shadow: 0 0 5px rgb(218, 218, 218);
+  background:#FFF;
+  padding: 1rem 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.submit-button {
+  padding: 0 1rem;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
+
+.error {
+  color: red;
 }

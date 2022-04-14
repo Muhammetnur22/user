@@ -9,7 +9,7 @@ const initialState = {
   token: null,
 };
 
-const URL = 'https://jsonplaceholder.typicode.com/users'
+const URL = process.env.GATSBY_API_URL;
 
 const UsersState = ({ children }) => {
   const [state, dispatch] = useReducer(usersReducer, initialState);
@@ -17,6 +17,8 @@ const UsersState = ({ children }) => {
 
   // Initially fetches users data;
   useEffect(() => {
+    // Initialize and Verify user token
+    dispatch({ type: "GET_USER" });
     fetchUsers();
   }, []);
 
@@ -42,8 +44,10 @@ const UsersState = ({ children }) => {
     return users.length > 0 ? users.slice(0, 2) : []; 
   }, [isAuthenticated, users]);
 
-  const handleChangeAuthenticated = () => {
-    dispatch({type: 'SET_AUTHENTICATED', payload: !isAuthenticated})
+  // Authenticate User
+  const authenticateUser = (key) => {
+    setLoading();
+    dispatch({ type: 'SET_AUTHENTICATED', payload: key });
   }
 
   return (
@@ -53,7 +57,7 @@ const UsersState = ({ children }) => {
         loading,
         isAuthenticated,
         token,
-        handleChangeAuthenticated,
+        authenticateUser,
       }}
     >
       {children}
@@ -61,4 +65,4 @@ const UsersState = ({ children }) => {
   )
 }
 
-export default UsersState;  
+export default UsersState;

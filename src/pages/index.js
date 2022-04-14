@@ -3,14 +3,17 @@ import React from "react"
 import UsersState from "../context/UsersState";
 // Components
 import Users from "../components/Users";
-import Popup from "../components/Popup"
+import Auth from "../components/Auth"
 // Style
+import  '../styles/main.css'
 
 const Home = () => {
   return (
     <UsersState>
-      <Users />
-      {/* <Popup/>  */}
+      <div className="container">
+        <Users />
+        <Auth />
+      </div>
     </UsersState>
   )
 }
