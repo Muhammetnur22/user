@@ -1,35 +1,31 @@
+const key = process.env.GATSBY_SECRET_KEY;
+
 export default (state, action) => {
   switch (action.type) {
     case 'GET_USER':
-      const userSecretKey = sessionStorage.getItem("secretKey") || null;
+      const userSecretKey =
+        (typeof window !== "undefined") && window.sessionStorage.getItem("secretKey")
+          ? window.sessionStorage.getItem("secretKey") : null;
+      
+      const isValidKey = userSecretKey === key;
 
       return {
         ...state,
-        token: userSecretKey,
-        isAuthenticated: Boolean(userSecretKey),
-        loading: false
+        token: isValidKey || userSecretKey,
+        isAuthenticated: isValidKey,
       };
-    case 'SET_USERS':
-      return {
-        ...state,
-        users: action.payload,
-        loading: false
-      };
-    case 'SET_AUTHENTICATED':
+
+    case 'SET_AUTH_KEY':
       const secretKey = action.payload;
       // Sets secretKey to session storage
-      sessionStorage.setItem("secretKey", secretKey); 
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem("secretKey", secretKey);
+      }
 
       return {
         ...state,
         token: secretKey,
         isAuthenticated: true,
-        loading: false
-      };
-    case 'SET_LOADING':
-      return {
-        ...state,
-        loading: true,
       };
     default:
       return state;

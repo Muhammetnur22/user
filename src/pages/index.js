@@ -5,17 +5,34 @@ import UsersState from "../context/UsersState";
 import Users from "../components/Users";
 import Auth from "../components/Auth"
 // Style
-import  '../styles/main.css'
+import '../styles/main.css';
 
-const Home = () => {
+// Api url
+const URL = process.env.GATSBY_API_URL;
+
+const Home = ({ serverData }) => {
+  const usersData = serverData.users;
+
   return (
     <UsersState>
       <div className="container">
-        <Users />
+        {usersData && <Users userData={usersData} />}
         <Auth />
       </div>
     </UsersState>
   )
+}
+
+// Initially fetches users data (SSR)
+export async function getServerData() {
+  const res = await fetch(URL)
+  const data = await res.json()
+
+  return {
+    props: {
+      users: data,
+    },
+  }
 }
 
 export default Home;

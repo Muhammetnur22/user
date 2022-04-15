@@ -1,62 +1,34 @@
-import React, { useReducer, useEffect, useMemo } from 'react'
+import React, { useReducer, useEffect } from 'react'
+// State
 import UsersContext from './usersContext';
 import usersReducer from './usersReducer';
 
 const initialState = {
-  users: [],
-  loading: false,
   isAuthenticated: false,
   token: null,
 };
 
-const URL = process.env.GATSBY_API_URL;
-
 const UsersState = ({ children }) => {
   const [state, dispatch] = useReducer(usersReducer, initialState);
-  const { users, isAuthenticated, loading, token } = state;
+  const { isAuthenticated, token } = state;
 
-  // Initially fetches users data;
+  // Initialize and Verify user token
   useEffect(() => {
-    // Initialize and Verify user token
     dispatch({ type: "GET_USER" });
-    fetchUsers();
   }, []);
-
-  // Sets loading to true
-  const setLoading = () => dispatch({ type: "SET_LOADING" });
-
-  // Fetches users data
-  const fetchUsers = async () => {
-    setLoading();
-    try {
-      const res = await fetch(URL);
-      const data = await res.json()
-
-      if (data) dispatch({type: "SET_USERS", payload: data});
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  
-  // Returns users data according to user authentication
-  const usersData = useMemo(() => {
-    if (isAuthenticated) return users;
-    return users.length > 0 ? users.slice(0, 2) : []; 
-  }, [isAuthenticated, users]);
 
   // Authenticate User
   const authenticateUser = (key) => {
-    setLoading();
-    dispatch({ type: 'SET_AUTHENTICATED', payload: key });
+    dispatch({ type: 'SET_AUTH_KEY', payload: key });
   }
 
   return (
     <UsersContext.Provider
       value={{
-        users: usersData,
-        loading,
+        // state
         isAuthenticated,
         token,
+        // methods
         authenticateUser,
       }}
     >
