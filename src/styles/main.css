@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+  --primary-color: rgb(148, 27, 148);
+  --text-light: rgb(71, 71, 71);
+  --error: rgb(214, 0, 0);
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -18,10 +25,12 @@
 .header{
   font-size: 2.5rem;
   margin: 2rem 0;
+  color: var(--primary-color);
 }
 
 .message {
   margin: 1rem 0.5rem 0;
+  color: var(--text-light);
 }
 
 .user-data{
@@ -37,7 +46,7 @@
 button {
   border: none;
   color: white;
-  background:#0d3678;
+  background: var(--primary-color);
   cursor: pointer;
 }
 
@@ -49,6 +58,10 @@ button {
 }
 
 form {
+  text-align: center;
+}
+
+.input-wrapper {
   text-align: center;
   display: flex;
   margin: 1rem 0;
@@ -72,6 +85,5 @@ form {
 }
 
 .error {
-  color: red;
+  color: var(--error);
 }
-  
